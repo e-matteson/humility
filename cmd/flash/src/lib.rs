@@ -129,6 +129,10 @@ fn flashcmd(
             let mut conf = tempfile::NamedTempFile::new()?;
             let srec = tempfile::NamedTempFile::new()?;
 
+            // TODO add a flag for not specifying serial. Openocd complains that
+            // it can't find the st-link with the given serial, but works fine
+            // if the serial is just omitted.
+            /*
             if let Some(serial) = serial {
                 humility::msg!("specifying serial {}", serial);
 
@@ -148,6 +152,7 @@ fn flashcmd(
                 //
                 writeln!(conf, "interface hla\nhla_serial {}", serial)?;
             }
+            */
 
             if let FlashProgramConfig::Payload(ref payload) = payload {
                 write!(conf, "{}", payload)?;
